@@ -10,7 +10,7 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
   standalone: true,
   imports: [
     CommonModule,
-    ReactiveFormsModule,
+    ReactiveFormsModule
   ],
   template: `
     <article>
@@ -44,10 +44,10 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
       </section>
     </article>
   `,
-
-  styleUrl: './details.component.css'
+  styleUrls: ['./details.component.css'],
 })
 export class DetailsComponent {
+
   route: ActivatedRoute = inject(ActivatedRoute);
   housingService = inject(HousingService);
   housingLocation: HousingLocation | undefined;
@@ -59,7 +59,7 @@ export class DetailsComponent {
   });
 
   constructor() {
-    const housingLocationId = Number(this.route.snapshot.params['id']);
+    const housingLocationId = parseInt(this.route.snapshot.params['id'], 10);
     this.housingLocation = this.housingService.getHousingLocationById(housingLocationId);
   }
 
@@ -70,4 +70,5 @@ export class DetailsComponent {
       this.applyForm.value.email ?? ''
     );
   }
+
 }
